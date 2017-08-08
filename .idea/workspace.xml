@@ -3,10 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9a288f16-850a-4d82-985b-7aa3fd1f75df" name="默认的" comment="默认的">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/login/login.js" afterPath="$PROJECT_DIR$/login/login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server.js" afterPath="$PROJECT_DIR$/server.js" />
     </list>
     <ignored path="angularui.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -365,7 +361,7 @@
       <workItem from="1501848376944" duration="2346000" />
       <workItem from="1501926526349" duration="3381000" />
       <workItem from="1501931682775" duration="5042000" />
-      <workItem from="1502112212208" duration="12117000" />
+      <workItem from="1502112212208" duration="12131000" />
     </task>
     <task id="LOCAL-00001" summary="默认的">
       <created>1501931152101</created>
@@ -381,11 +377,18 @@
       <option name="project" value="LOCAL" />
       <updated>1502150990215</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="默认的">
+      <created>1502208451175</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1502208451176</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22886000" />
+    <option name="totallyTimeSpent" value="22900000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
