@@ -6,9 +6,9 @@ appLogin.factory("Backend",["$http","$q","$rootScope","Auth",function($http,$q,$
         $get : function () {
              return $http({
                 method:"POST",
-                url:"http://127.0.0.1:9099",
-                params:{
-                    token:Auth.getToken()
+                url:"http://127.0.0.1:9099/login",
+                data:{
+                    token:8888888
                 }
             }).then(function(data){
                 console.log(data);
@@ -19,7 +19,7 @@ appLogin.factory("Backend",["$http","$q","$rootScope","Auth",function($http,$q,$
     }}
 
 }]);
-appSchool.controller('LoginController', ['$scope','Backend',function($scope,Backend){
+appSchool.controller('LoginController', ['$scope','Backend','Auth',function($scope,Backend,Auth){
     $scope.go = function(){
         Backend.$get().then(function (data) {
             console.log(data);

@@ -78,6 +78,9 @@ photoGallery.factory('Auth',function ($cookieStore,ACCESS_LEVELS) {
         },
         getToken: function() {
             return _user ? _user.token : '';
+        },
+        setToken: function(a) {
+            return _user.token = a;
         }
     }
 });
@@ -98,40 +101,48 @@ photoGallery.run(["$rootScope","$location","Auth",function ($rootScope,$location
 }]);
 
 photoGallery.config(function($httpProvider) {
-    $httpProvider.interceptors.push('interceptor');
+    console.log($httpProvider.interceptors.push('interceptor'));
 
-// 在这里构造拦截器
-    var interceptor = function ($q, $rootScope, Auth) {
-        console.log(111);
-        return {
-            'response': function (resp) {
-                if (resp.config.url == '/api/login') {
+});
+
+photoGallery.factory("interceptor",function ($q, $rootScope, Auth) {
+    console.log(111);
+    return {
+        'request': function(req){
+            req.data = req.data || {};
+            if(Auth.isAuthorized() && !req.data.token){
+                req.params.token = Auth.getToken();
+            }
+            return req;
+        },
+        'response': function (resp) {
+            console.log(resp);
+            if (resp.config.url == 'http://127.0.0.1:9099/login') {
 // 假设API服务器返回的数据格式如下:
 // { token: "AUTH_TOKEN" }
-                    Auth.setToken(resp.data.token);
-                }
-                return resp;
-            },
-            'responseError': function (rejection) {
-// 错误处理
-                switch (rejection.status) {
-                    case 401:
-                        if (rejection.config.url !== 'api/login')
-// 如果当前不是在登录页面
-                            $rootScope.$broadcast('auth:loginRequired');
-                        break;
-                    case 403:
-                        $rootScope.$broadcast('auth:forbidden');
-                        break;
-                    case 404:
-                        $rootScope.$broadcast('page:notFound');
-                        break;
-                    case 500:
-                        $rootScope.$broadcast('server:error');
-                        break;
-                }
-                return $q.reject(rejection);
+                Auth.setToken(resp.data.token);
             }
-        };
+            return resp;
+        },
+        'responseError': function (rejection) {
+// 错误处理
+            switch (rejection.status) {
+                case 401:
+                    if (rejection.config.url !== 'api/login')
+// 如果当前不是在登录页面
+                        $rootScope.$broadcast('auth:loginRequired');
+                    break;
+                case 403:
+                    $rootScope.$broadcast('auth:forbidden');
+                    break;
+                case 404:
+                    $rootScope.$broadcast('page:notFound');
+                    break;
+                case 500:
+                    $rootScope.$broadcast('server:error');
+                    break;
+            }
+            return $q.reject(rejection);
+        }
     };
 });
